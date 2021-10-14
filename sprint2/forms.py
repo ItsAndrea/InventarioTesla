@@ -1,18 +1,11 @@
 from flask_wtf import FlaskForm
-from wtforms import TextField, PasswordField, SubmitField, RadioField, TextAreaField, SelectField, DateField
+from wtforms import TextField, PasswordField, SubmitField, RadioField, TextAreaField, SelectField, DateField, SelectMultipleField, widgets
 from wtforms.validators import InputRequired, Length
 
-from wtforms.fields.html5 import TelField, EmailField
-from wtforms.widgets.core import Select
+from wtforms.fields.html5 import SearchField, TelField, EmailField
 
 
 class Login(FlaskForm):
-    usr = TextField('',validators=[InputRequired(message='Se requiere el usuario'), Length(min=6, max=40, message='Longitud debe estar entre 6 y 40')])
-    pwd = PasswordField('',validators=[InputRequired(message='Se requiere la clave')])
-    btn = SubmitField('login')
-    check= RadioField('Recordar contraseña')
-
-class Cambiarcontraseña(FlaskForm):
     usr = TextField('',validators=[InputRequired(message='Se requiere el usuario'), Length(min=6, max=40, message='Longitud debe estar entre 6 y 40')])
     pwd = PasswordField('',validators=[InputRequired(message='Se requiere la clave')])
     btn = SubmitField('login')
@@ -61,6 +54,37 @@ class FgestionarProveedores(FlaskForm):
     cancelarBtn = SubmitField('Cancelar')
 
 #
+#               PRODUCTOS
+# 
+
+class FcalificarProducto(FlaskForm):
+    eanTxt = TextField('EAN',validators=[InputRequired(message='Se requiere el EAN'), Length(min=7, max=10, message='Longitud debe estar entre 7 y 10')])
+    nombreTxt = TextField('Nombre',validators=[InputRequired(message='Se requiere el Nombre')])
+    puntajeRbt  =  RadioField('Puntaje' , choices = [( 1 , '1' ), ( 2 , '2' ), ( 3 , '3' ), ( 4 , '4' ), ( 5 , '5' )] , coerce = int )
+    comentarioTxt = TextAreaField('Comentario', validators=[InputRequired(message='Se requiere un comentario')])
+    agregarBtn = SubmitField('Agregar')
+    cancelarBtn = SubmitField('Cancelar')
+
+class MultiCheckboxField(SelectMultipleField):
+    widget = widgets.ListWidget(prefix_label=False)
+    option_widget = widgets.CheckboxInput()    
+
+
+class FAsociar(FlaskForm):
+    eanSxt = SearchField('EAN',validators=[InputRequired(message='Se requiere el EAN'), Length(min=7, max=10, message='Longitud debe estar entre 7 y 10')])
+    nombreTxt = TextField('Nombre',validators=[InputRequired(message='Se requiere el Nombre')])
+    nitSxt = SearchField('Nit',validators=[InputRequired(message='Se requiere el Nit'), Length(min=7, max=10, message='Longitud debe estar entre 7 y 10')])
+    rSocialTxt = TextField('Razón Social',validators=[InputRequired(message='Se requiere la Razón Social')])
+    opcionChk = MultiCheckboxField('Habilitar', choices=[( 1 , '' )])
+    consultarBtn = SubmitField('Consultar')
+    agregarBtn = SubmitField('Agregar')
+    borrarBtn = SubmitField('Borrar')
+    editarBtn = SubmitField('Editar')
+    cancelarBtn = SubmitField('Cancelar')
+   
+    """ example = MultiCheckboxField('Label', choices=files) """
+
+#
 #               USUARIOS
 # 
 
@@ -77,18 +101,4 @@ class FUsuario(FlaskForm):
     agregarBtn = SubmitField('Agregar')
     borrarBtn = SubmitField('Borrar')
     editarBtn = SubmitField('Editar')
-    cancelarBtn = SubmitField('Cancelar')
-    
-    
- 
-#
-#               PRODUCTOS
-# 
-
-class FcalificarProducto(FlaskForm):
-    eanTxt = TextField('EAN',validators=[InputRequired(message='Se requiere el EAN'), Length(min=7, max=10, message='Longitud debe estar entre 7 y 10')])
-    nombreTxt = TextField('Nombre',validators=[InputRequired(message='Se requiere el Nombre')])
-    puntajeRbt  =  RadioField('Puntaje' , choices = [( 1 , '1' ), ( 2 , '2' ), ( 3 , '3' ), ( 4 , '4' ), ( 5 , '5' )] , coerce = int )
-    comentarioTxt = TextAreaField('Comentario', validators=[InputRequired(message='Se requiere un comentario')])
-    agregarBtn = SubmitField('Agregar')
     cancelarBtn = SubmitField('Cancelar')
