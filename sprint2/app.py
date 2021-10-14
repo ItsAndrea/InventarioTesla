@@ -2,7 +2,7 @@
 from flask import Flask, render_template, session, request
 from markupsafe import escape
 from werkzeug.datastructures import TypeConversionDict
-from forms import FAsociar, FcalificarProducto, FUsuario, Login,Cambiarcontraseña
+from forms import FAsociar, FcalificarProducto, FUsuario, Login,Cambiarcontraseña,Fproductos
 # Proveedores
 from forms import FcrearProveedor, FeditarProveedor,FvisualizarProveedor,FgestionarProveedores 
 import os
@@ -144,6 +144,32 @@ def crearUsuario():
         return render_template("crearUsuario.html",form=frm)
     else:
          return render_template("crearUsuario.html",form=frm)
+        
+app.route("/crearProducto/",methods=["GET","POST"])
+def crearProducto():
+    frm = FProductos()
+    if request.method=='GET':
+        return render_template("crearProducto.html",form=frm)
+    else:
+         return render_template("crearProducto.html",form=frm)
+
+@app.route("/gestionarProducto/",methods=["GET"])
+def gestionarProducto():
+    frm = FProductos()
+    return render_template("gestionarProducto.html",form=frm)
+
+@app.route("/editarProducto/",methods=["GET","POST"])
+def editarProducto():
+    frm = FProductos()
+    if request.method=='GET':
+        return render_template("editarProducto.html",form=frm)
+    else:
+        return render_template("editarProducto.html",form=frm)
+
+@app.route("/visualizarProducto/",methods=["GET"])
+def visualizarProducto():
+    frm = FProductos()
+    return render_template("visualizarProducto.html",form=frm)
         
 @app.route("/asociarProveedores/",methods=["GET","POST"])
 def asociarProveedores():
