@@ -2,7 +2,7 @@
 from flask import Flask, render_template, session, request
 from markupsafe import escape
 from werkzeug.datastructures import TypeConversionDict
-from forms import FAsociar, FcalificarProducto, FUsuario, Login
+from forms import FAsociar, FcalificarProducto, FUsuario, Login,Cambiarcontraseña
 # Proveedores
 from forms import FcrearProveedor, FeditarProveedor,FvisualizarProveedor,FgestionarProveedores 
 import os
