@@ -61,10 +61,7 @@
                                     <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
                                         <nav class="sb-sidenav-menu-nested nav">
                                             <a class="nav-link" href="/crearProducto/">Crear</a>
-                                            {% if 'admin_id' in session%}
-                                            <a class="nav-link" href="/editarProducto/">Editar</a>
                                             <a class="nav-link" href="/gestionarProducto/">Gestionar</a>
-                                            {% endif %}
                                             <a class="nav-link" href="/calificarProducto/">Calificar</a>
                                         </nav>
                                     </div>
@@ -75,10 +72,8 @@
                                     <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
                                         <nav class="sb-sidenav-menu-nested nav">
                                             <a class="nav-link" href="/crearProveedor/">Crear</a>
-                                            {% if 'admin_id' in session %}
                                             <a class="nav-link" href="/gestionarProveedores/">Gestionar</a>
                                             <a class="nav-link" href="/editarProveedor/">Editar proveedor</a>
-                                            {% endif %}
                                             <a class="nav-link" href="/visualizarProveedor/">Visualizar proveedor</a>
                                         </nav>
                                     </div>
@@ -94,8 +89,10 @@
                             </a>
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="/registrarUsuarios/">Registrar usuarios</a>
-                                    <a class="nav-link" href="/gestionarUsuarios/">Gestionar usuarios</a>
+                                    <a class="nav-link" href="/registrarUsuarios/">Crear</a>
+                                    <a class="nav-link" href="/gestionarUsuarios/">Gestionar</a>
+                                    <a class="nav-link" href="/editarUsuario/">Editar Usuario</a>
+                                    <a class="nav-link" href="/visualizarUsuario/">Visualizar</a>
                                     <a class="nav-link" href="/cambiarContraseña/">Cambiar contraseña</a>
                                 </nav>
                             </div>
@@ -142,3 +139,4 @@
         <script src="../static/js/datatables-simple-demo.js"></script>
     </body>
 </html>
+
