@@ -68,6 +68,29 @@ class FcalificarProducto(FlaskForm):
 class MultiCheckboxField(SelectMultipleField):
     widget = widgets.ListWidget(prefix_label=False)
     option_widget = widgets.CheckboxInput()    
+    
+class FProductos(FlaskForm):
+    eanTxt = TextField('EAN',validators=[InputRequired(message='Se requiere el EAN'), Length(min=7,max=10,message='Longitud debe estar entre 7 y 10')])
+    nombreTxt = TextField('Nombre',validators=[InputRequired(message='Se requiere el Nombre')])
+    marcaTxt = TextField('Marca',validators=[InputRequired(message='Se requiere la Marca')])
+    modeloTxt = TextField('Marca',validators=[InputRequired(message='Se requiere el Modelo')])
+    anoTxt = TextField('Año',validators=[InputRequired(message='Se requiere el año')])
+    asientosTxt = TextField('Asientos',validators=[InputRequired(message='Se requiere asientos')])
+    pesoTxt = TextField('Peso',validators=[InputRequired(message='Se requiere el peso')])
+    vmTxt = TextField('Velocidad Máxima',validators=[InputRequired(message='Se requiere la velocidad máxima')])
+    modeloTxt = TextField('Modelo',validators=[InputRequired(message='Se requiere el modelo')])
+    colorTxt = TextField('Color',validators=[InputRequired(message='Se requiere el color')])
+    rinesTxt = TextField('Rines',validators=[InputRequired(message='Se requieren los rines')])
+    spTxt = TextField('Sis. de Propulsión',validators=[InputRequired(message='Se requiere el sis. de propulsión')])
+    smTxt = TextField('Stock Mínimo',validators=[InputRequired(message='Se requiere el stock mínimo')])
+    nitPTxt = TextField('Nit',validators=[InputRequired(message='Se requiere el nit Proveedor')])
+    rsTxt = TextField('Razón Social',validators=[InputRequired(message='Se requiere la razón social')])
+    desTxt = TextAreaField('Descripción',validators=[InputRequired(message='Se requiere descripción')])
+    agregarBtn = SubmitField('Agregar')
+    borrarBtn = SubmitField('Borrar')
+    editarBtn = SubmitField('Editar')
+    cancelarBtn = SubmitField('Cancelar')
+    actualizarBtn = SubmitField('Actualizar')
 
 
 class FAsociar(FlaskForm):
