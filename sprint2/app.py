@@ -1,13 +1,12 @@
 # -*- coding: utf-8 -*-
-from logging import error
 from flask import Flask, render_template, session, request
 from markupsafe import escape
 from werkzeug.datastructures import TypeConversionDict
-from wtforms.widgets.core import PasswordInput
-from forms import Login, Cambiarcontraseña
+from forms import FAsociar, FcalificarProducto, FUsuario, Login
 # Proveedores
 from forms import FcrearProveedor, FeditarProveedor,FvisualizarProveedor,FgestionarProveedores 
 import os
+
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
 
@@ -124,6 +123,14 @@ def visualizarProveedor():
     frm = FvisualizarProveedor()
     return render_template("visualizarProveedor.html",form=frm)
 
+@app.route("/asociarProductos/",methods=["GET","POST"])
+def asociarProductos():
+    frm = FAsociar()
+    if request.method=='GET':
+        return render_template("asociarProductos.html",form=frm)
+    else:
+        return render_template("asociarProductos.html",form=frm)
+
 
 
 #
@@ -137,6 +144,14 @@ def crearUsuario():
         return render_template("crearUsuario.html",form=frm)
     else:
          return render_template("crearUsuario.html",form=frm)
+        
+@app.route("/asociarProveedores/",methods=["GET","POST"])
+def asociarProveedores():
+    frm = FAsociar()
+    if request.method=='GET':
+        return render_template("asociarProveedores.html",form=frm)
+    else:
+        return render_template("asociarProveedores.html",form=frm)
 
 
 #
