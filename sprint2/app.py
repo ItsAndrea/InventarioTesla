@@ -125,6 +125,52 @@ def visualizarProveedor():
     return render_template("visualizarProveedor.html",form=frm)
 
 
+
+#
+#               PRODUCTOS
+#     
+
+@app.route("/calificarProducto/",methods=["GET","POST"])
+def crearUsuario():
+    frm = FcalificarProducto()
+    if request.method=='GET':
+        return render_template("crearUsuario.html",form=frm)
+    else:
+         return render_template("crearUsuario.html",form=frm)
+
+
+#
+#               USUARIOS
+#     
+
+@app.route("/crearUsuario/",methods=["GET","POST"])
+def crearUsuario():
+    frm = FUsuario()
+    if request.method=='GET':
+        return render_template("crearUsuario.html",form=frm)
+    else:
+         return render_template("crearUsuario.html",form=frm)
+
+@app.route("/gestionarUsuarioes/",methods=["GET"])
+def visualizarUsuarioes():
+    frm = FUsuario
+    return render_template("gestionarUsuarioes.html",form=frm)
+
+@app.route("/editarUsuario/",methods=["GET","POST"])
+def editarUsuario():
+    frm = FUsuario()
+    if request.method=='GET':
+        return render_template("editarUsuario.html",form=frm)
+    else:
+        return render_template("editarUsuario.html",form=frm)
+
+@app.route("/visualizarUsuario/",methods=["GET"])
+def visualizarUsuario():
+    frm = FUsuario()
+    return render_template("visualizarUsuario.html",form=frm)
+
+
+
 if __name__=='__main__':
     app.run(debug=True)
 
