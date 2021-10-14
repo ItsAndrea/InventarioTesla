@@ -1,0 +1,21 @@
+{% extends 'baselogin.html' %}
+{% block cuerpo %}
+        <form action="/login/" method="POST">
+            <div class="form-floating mb-3">
+                <input class="form-control" name="mail" id="inputEmail" type="email" placeholder="name@example.com" minlength="6" />
+                <label for="inputEmail">Email address</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input class="form-control" name="psw" id="inputPassword" type="password" placeholder="Password" minlength="6"/>
+                <label for="inputPassword">Password</label>
+            </div>
+            <div class="form-check mb-3">
+                <input class="form-check-input" id="inputRememberPassword" type="checkbox" value="" />
+                <label class="form-check-label" for="inputRememberPassword">Remember Password</label>
+            </div>
+            <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
+                <a class="small" href="/recuperarContraseña/">¿Olvidate tu contraseña?</a>
+                <input class="btn btn-primary" id="submit" type="submit" value="login"/>
+            </div>
+        </form>
+{% endblock %}

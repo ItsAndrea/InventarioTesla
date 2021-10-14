@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block cuerpo %}
+    <form action="/recuperarContraseña/" method="POST">
+        <div class="card shadow-lg border-0 rounded-lg mt-5">
+            <!--titulo-->
+            <div class="card-header"><h3 class="text-center font-weight-light my-4">Recuperar contraseña</h3></div>
+                <div class="card-body">
+                    <!--inputs (textfiels, checkboxs, etc)-->
+                    <div class="form-floating mb-3">
+                    <input class="form-control" name="nameTxt" id="inputEmail" type="text" placeholder="name" />
+                    <label for="inputEmail">Nombre de usuario</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                    <input class="form-control" name="mailTxt" id="inputPassword" type="email" placeholder="name@example.com" />
+                    <label for="inputPassword">Email</label>
+                    </div>
+                    <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
+                    <!--este <a> es relleno-->
+                    <a class="small" href="#"></a>
+                    <a class="small" href="#"></a>
+                    <a class="small" href="#"></a>
+                    <a class="small" href="#"></a>
+                    <a class="small" href="#"></a>
+                    <a class="small" href="#"></a>
+                    <a class="small" href="#"></a>
+                    <a class="small" href="#"></a>
+                    <a class="small" href="#"></a>
+                    <a class="small" href="#"></a>
+                    <a class="small" href="#"></a>
+                    <!--boton de envio-->
+                    <a href="/home/" class="btn btn-primary">Cancelar</a>
+                    <input type="submit" class="btn btn-primary"/>
+                    </div>
+            </div>
+            <div class="card-footer text-center py-3">
+                <!--este <a> es relleno-->
+                <div class="small"><a href="#"> </a></div>
+                <a class="small" href="#">{{error}}</a>
+            </div>
+        </div>
+        </form>
+{% endblock %}
