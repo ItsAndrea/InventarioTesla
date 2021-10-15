@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
 {% block cuerpo %}
-    {%if 'admin_id' in session %}
         <form action='/asociarProductos/' method='POST' name='asociarProductos' id='asociarProductos'>  
             <div class="card shadow-lg border-0 rounded-lg mt-5">
                 <!--Header-->
@@ -118,7 +117,7 @@
                         <!--boton de envio-->
                         <div>
                             {{form.agregarBtn(class="btn btn-primary")}}
-                            {{form.cancelarBtn(class="btn btn-primary", type="button", onclick="location.href='/dashboard/'")}}
+                            {{form.cancelarBtn(class="btn btn-primary", type="button", onclick="location.href='/home/'")}}
                         </div>
                     </div>
                 </div>
@@ -128,5 +127,4 @@
                 </div>
             </div>  
         </form>
-    {% endif %}
 {% endblock %}

@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 from flask import Flask, render_template, session, request
+from flask.sessions import NullSession
 from markupsafe import escape
 from werkzeug.datastructures import TypeConversionDict
-from forms import FAsociar, FcalificarProducto, FUsuario, Login,Cambiarcontraseña,Fproductos
-# Proveedores
-from forms import FcrearProveedor, FeditarProveedor,FvisualizarProveedor,FgestionarProveedores 
+from forms import FAsociar, FcalificarProducto, FUsuario, Login, FProducto, FProveedor 
 import os
+
 
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
@@ -16,10 +16,11 @@ app.secret_key = os.urandom(24)
 def home():
     return render_template("home.html")
 
+
 @app.route('/logout/')
 def logout():
     session.clear()
-    return render_template('home.html')
+    return render_template('flogin.html')
 
 @app.route("/login/", methods=["GET","POST"])
 def login():
@@ -61,11 +62,10 @@ def login():
         else:
             return render_template('flogin.html',titulo='Control de acceso', form=frm)
 
-@app.route("/recuperarContraseña/", methods=['GET','POST'])
+@app.route("/recuperarContrasena/", methods=['GET','POST'])
 def recuperarContraseña():
-    frm=Cambiarcontraseña()
     if request.method=='GET':
-        return render_template("recuperarContraseña.html",form=frm)
+        return render_template("recuperarContrasena.html")
     else:
         mail= request.form['mailTxt']
         name= request.form['nameTxt']
@@ -74,23 +74,22 @@ def recuperarContraseña():
             return render_template("recuperarContraseña.html",error=error)
         if len(mail)>6 and len(name)>6:
             error='El email fue encontrado y se envio tu contraseña'
-            return render_template("recuperarContraseña.html",error=error)
+            return render_template("recuperarContrasena.html",error=error)
 
 
-@app.route("/cambiarContraseña/", methods=['GET','POST'])
+@app.route("/cambiarContrasena/", methods=['GET','POST'])
 def cambiarContraseña():
-    frm=Cambiarcontraseña()
     if request.method=='GET':
-        return render_template("cambiarContraseña.html",form=frm)
+        return render_template("cambiarContrasena.html")
     else:
         name=request.form['nameTxt']
         mail=request.form['mailTxt']
         psw=request.form['newpasswordTxt']
         psw2=request.form['newpasswordTxt2']
         if psw==psw2:
-            return render_template("cambiarContraseña.html",error="Contraseña cambiada")
+            return render_template("cambiarContrasena.html",error="Contraseña cambiada")
         else:
-            return render_template("cambiarContraseña.html",error="Confirme que las nuevas contraseñas sean iguales",name=name,mail=mail)
+            return render_template("cambiarContrasena.html",error="Confirme que las nuevas contraseñas sean iguales",name=name,mail=mail)
 
 
 #
@@ -99,7 +98,7 @@ def cambiarContraseña():
 
 @app.route("/crearProveedor/",methods=["GET","POST"])
 def crearProveedor():
-    frm = FcrearProveedor()
+    frm = FProveedor()
     if request.method=='GET':
         return render_template("crearProveedor.html",form=frm)
     else:
@@ -107,12 +106,12 @@ def crearProveedor():
 
 @app.route("/gestionarProveedores/",methods=["GET"])
 def visualizarProveedores():
-    frm = FgestionarProveedores
+    frm = FProveedor
     return render_template("gestionarProveedores.html",form=frm)
 
 @app.route("/editarProveedor/",methods=["GET","POST"])
 def editarProveedor():
-    frm = FeditarProveedor()
+    frm = FProveedor()
     if request.method=='GET':
         return render_template("editarProveedor.html",form=frm)
     else:
@@ -120,7 +119,7 @@ def editarProveedor():
 
 @app.route("/visualizarProveedor/",methods=["GET"])
 def visualizarProveedor():
-    frm = FvisualizarProveedor()
+    frm = FProveedor()
     return render_template("visualizarProveedor.html",form=frm)
 
 @app.route("/asociarProductos/",methods=["GET","POST"])
@@ -136,31 +135,23 @@ def asociarProductos():
 #
 #               PRODUCTOS
 #     
-
-@app.route("/calificarProducto/",methods=["GET","POST"])
-def crearUsuario():
-    frm = FcalificarProducto()
-    if request.method=='GET':
-        return render_template("crearUsuario.html",form=frm)
-    else:
-         return render_template("crearUsuario.html",form=frm)
-        
-app.route("/crearProducto/",methods=["GET","POST"])
+      
+@app.route("/crearProducto/",methods=["GET","POST"])
 def crearProducto():
-    frm = FProductos()
+    frm = FProducto()
     if request.method=='GET':
         return render_template("crearProducto.html",form=frm)
     else:
          return render_template("crearProducto.html",form=frm)
 
-@app.route("/gestionarProducto/",methods=["GET"])
-def gestionarProducto():
-    frm = FProductos()
-    return render_template("gestionarProducto.html",form=frm)
+@app.route("/gestionarProductos/",methods=["GET"])
+def gestionarProductos():
+    frm = FProducto()
+    return render_template("gestionarProductos.html",form=frm)
 
 @app.route("/editarProducto/",methods=["GET","POST"])
 def editarProducto():
-    frm = FProductos()
+    frm = FProducto()
     if request.method=='GET':
         return render_template("editarProducto.html",form=frm)
     else:
@@ -168,7 +159,7 @@ def editarProducto():
 
 @app.route("/visualizarProducto/",methods=["GET"])
 def visualizarProducto():
-    frm = FProductos()
+    frm = FProducto()
     return render_template("visualizarProducto.html",form=frm)
         
 @app.route("/asociarProveedores/",methods=["GET","POST"])
@@ -178,6 +169,14 @@ def asociarProveedores():
         return render_template("asociarProveedores.html",form=frm)
     else:
         return render_template("asociarProveedores.html",form=frm)
+
+@app.route("/calificarProducto/",methods=["GET","POST"])
+def calificarProducto():
+    frm = FcalificarProducto()
+    if request.method=='GET':
+        return render_template("calificarProducto.html",form=frm)
+    else:
+         return render_template("calificarProducto.html",form=frm)
 
 
 #
@@ -192,10 +191,10 @@ def crearUsuario():
     else:
          return render_template("crearUsuario.html",form=frm)
 
-@app.route("/gestionarUsuarioes/",methods=["GET"])
-def visualizarUsuarioes():
+@app.route("/gestionarUsuarios/",methods=["GET"])
+def gestionarUsuarios():
     frm = FUsuario
-    return render_template("gestionarUsuarioes.html",form=frm)
+    return render_template("gestionarUsuarios.html",form=frm)
 
 @app.route("/editarUsuario/",methods=["GET","POST"])
 def editarUsuario():

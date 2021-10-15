@@ -1,11 +1,10 @@
 {% extends 'base.html' %}
 {% block cuerpo %}
-    {% if 'admin_id' in session %}
         <form action='/visualizarProveedor/' method='POST' name='visualizarProveedor' id='visualizarProveedor'>  
             <div class="card shadow-lg border-0 rounded-lg mt-5">
                 <!--Header-->
                 <div class="card-header">
-                    <h3 class="text-center font-weight-light my-4">Visualizar Datos Proveedor</h3>
+                    <h3 class="text-center font-weight-light my-4">Visualizar Datos del Proveedor</h3>
                 </div>
                 <!-- Body -->
                 <div class="card-body">
@@ -46,5 +45,4 @@
                 </div>
             </div>  
         </form>
-    {% endif %}
 {% endblock %}

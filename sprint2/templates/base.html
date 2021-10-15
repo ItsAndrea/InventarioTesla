@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
     <head>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -29,7 +29,7 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="/settings/">Settings</a></li>
+                        <li><a class="dropdown-item" href="/cambiarContrasena/">Cambiar Contraseña</a></li>
                         <li><hr class="dropdown-divider" /></li>
                         {% if 'usr_id' in session %}
                             <li><a class="dropdown-item" href="/logout/">Logout</a></li>
@@ -61,7 +61,7 @@
                                     <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
                                         <nav class="sb-sidenav-menu-nested nav">
                                             <a class="nav-link" href="/crearProducto/">Crear</a>
-                                            <a class="nav-link" href="/gestionarProducto/">Gestionar</a>
+                                            <a class="nav-link" href="/gestionarProductos/">Gestionar</a>
                                             <a class="nav-link" href="/editarProducto/">Editar</a>
                                             <a class="nav-link" href="/visualizarProducto/">Visualizar producto</a>
                                             <a class="nav-link" href="/asociarProveedores/">Asociar proveedores</a>
@@ -77,11 +77,11 @@
                                             <a class="nav-link" href="/crearProveedor/">Crear</a>
                                             <a class="nav-link" href="/gestionarProveedores/">Gestionar</a>
                                             <a class="nav-link" href="/editarProveedor/">Editar proveedor</a>
-                                            <a class="nav-link" href="/asociarProductos/">Asociar productos</a>
                                             <a class="nav-link" href="/visualizarProveedor/">Visualizar proveedor</a>
+                                            <a class="nav-link" href="/asociarProductos/">Asociar productos</a>
                                         </nav>
                                     </div>
-                                    <a class="nav-link" href="/listadoUsuarios/">Listado usuarios</a>
+                                   <!--  <a class="nav-link" href="/listadoUsuarios/">Listado usuarios</a> -->
                                 </nav>
                             </div>
                             {% if 'admin_id' in session %}
@@ -93,11 +93,11 @@
                             </a>
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="/registrarUsuarios/">Crear</a>
+                                    <a class="nav-link" href="/crearUsuario/">Crear</a>
                                     <a class="nav-link" href="/gestionarUsuarios/">Gestionar</a>
                                     <a class="nav-link" href="/editarUsuario/">Editar Usuario</a>
                                     <a class="nav-link" href="/visualizarUsuario/">Visualizar</a>
-                                    <a class="nav-link" href="/cambiarContraseña/">Cambiar contraseña</a>
+                                    <a class="nav-link" href="/cambiarContrasena/">Cambiar contraseña</a>
                                 </nav>
                             </div>
                             {% endif %}

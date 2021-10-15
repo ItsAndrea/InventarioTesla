@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block cuerpo %}
-        <form action='/fgestionarUsuarios/' method='POST' name='gestionarUsuarios' id='crearProveedor'>
+        <form action='/gestionarUsuarios/' method='POST' name='gestionarUsuarios' id='gestionarUsuarios'>
             <div class="card shadow-lg border-0 rounded-lg mt-5">
                 <!--Header-->
                 <div class="card-header">
@@ -62,10 +62,10 @@
                                         <li class="nav-item dropdown">
                                             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                                <li><a class="dropdown-item" href="/visualizarProveedor/">Ver</a></li>
+                                                <li><a class="dropdown-item" href="/visualizarUsuario/">Ver</a></li>
                                                 {% if 'usr_id' in session %}
-                                                    <li><a class="dropdown-item" href="/editarProveedor/">Editar</a></li>
-                                                    <li><a class="dropdown-item" onclick="location.href='/gestionarProveedores/'">Eliminar</a></li>
+                                                    <li><a class="dropdown-item" href="/editarUsuario/">Editar</a></li>
+                                                    <li><a class="dropdown-item" onclick="location.href='/gestionarUsuarios/'">Eliminar</a></li>
                                                 {% endif %} 
                                             </ul>
                                         </li>
@@ -81,10 +81,10 @@
                                         <li class="nav-item dropdown">
                                             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                                <li><a class="dropdown-item" href="/visualizarProveedor/">Ver</a></li>
+                                                <li><a class="dropdown-item" href="/visualizarUsuario/">Ver</a></li>
                                                 {% if 'usr_id' in session %}
-                                                    <li><a class="dropdown-item" href="/editarProveedor/">Editar</a></li>
-                                                    <li><a class="dropdown-item" onclick="location.href='/gestionarProveedores/'">Eliminar</a></li>
+                                                    <li><a class="dropdown-item" href="/editarUsuario/">Editar</a></li>
+                                                    <li><a class="dropdown-item" onclick="location.href='/gestionarUsuarios/'">Eliminar</a></li>
                                                 {% endif %} 
                                             </ul>
                                         </li>
@@ -100,10 +100,10 @@
                                         <li class="nav-item dropdown">
                                             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                                <li><a class="dropdown-item" href="/visualizarProveedor/">Ver</a></li>
+                                                <li><a class="dropdown-item" href="/visualizarUsuario/">Ver</a></li>
                                                 {% if 'usr_id' in session %}
-                                                    <li><a class="dropdown-item" href="/editarProveedor/">Editar</a></li>
-                                                    <li><a class="dropdown-item" onclick="location.href='/gestionarProveedores/'">Eliminar</a></li>
+                                                    <li><a class="dropdown-item" href="/editarUsuario/">Editar</a></li>
+                                                    <li><a class="dropdown-item" onclick="location.href='/gestionarUsuarios/'">Eliminar</a></li>
                                                 {% endif %} 
                                             </ul>
                                         </li>
@@ -119,10 +119,10 @@
                                         <li class="nav-item dropdown">
                                             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                                <li><a class="dropdown-item" href="/visualizarProveedor/">Ver</a></li>
+                                                <li><a class="dropdown-item" href="/visualizarUsuario/">Ver</a></li>
                                                 {% if 'usr_id' in session %}
-                                                    <li><a class="dropdown-item" href="/editarProveedor/">Editar</a></li>
-                                                    <li><a class="dropdown-item" onclick="location.href='/gestionarProveedores/'">Eliminar</a></li>
+                                                    <li><a class="dropdown-item" href="/editarUsuario/">Editar</a></li>
+                                                    <li><a class="dropdown-item" onclick="location.href='/gestionarUsuarios/'">Eliminar</a></li>
                                                 {% endif %} 
                                             </ul>
                                         </li>
@@ -138,10 +138,10 @@
                                         <li class="nav-item dropdown">
                                             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                                <li><a class="dropdown-item" href="/visualizarProveedor/">Ver</a></li>
+                                                <li><a class="dropdown-item" href="/visualizarUsuario/">Ver</a></li>
                                                 {% if 'usr_id' in session %}
-                                                    <li><a class="dropdown-item" href="/editarProveedor/">Editar</a></li>
-                                                    <li><a class="dropdown-item" onclick="location.href='/gestionarProveedores/'">Eliminar</a></li>
+                                                    <li><a class="dropdown-item" href="/editarUsuario/">Editar</a></li>
+                                                    <li><a class="dropdown-item" onclick="location.href='/gestionarUsuarios/'">Eliminar</a></li>
                                                 {% endif %} 
                                             </ul>
                                         </li>
@@ -157,10 +157,10 @@
                                         <li class="nav-item dropdown">
                                             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                                <li><a class="dropdown-item" href="/visualizarProveedor/">Ver</a></li>
+                                                <li><a class="dropdown-item" href="/visualizarUsuario/">Ver</a></li>
                                                 {% if 'usr_id' in session %}
-                                                    <li><a class="dropdown-item" href="/editarProveedor/">Editar</a></li>
-                                                    <li><a class="dropdown-item" onclick="location.href='/gestionarProveedores/'">Eliminar</a></li>
+                                                    <li><a class="dropdown-item" href="/editarUsuario/">Editar</a></li>
+                                                    <li><a class="dropdown-item" onclick="location.href='/gestionarUsuarios/'">Eliminar</a></li>
                                                 {% endif %} 
                                             </ul>
                                         </li>
@@ -176,10 +176,10 @@
                                         <li class="nav-item dropdown">
                                             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                                <li><a class="dropdown-item" href="/visualizarProveedor/">Ver</a></li>
+                                                <li><a class="dropdown-item" href="/visualizarUsuario/">Ver</a></li>
                                                 {% if 'usr_id' in session %}
-                                                    <li><a class="dropdown-item" href="/editarProveedor/">Editar</a></li>
-                                                    <li><a class="dropdown-item" onclick="location.href='/gestionarProveedores/'">Eliminar</a></li>
+                                                    <li><a class="dropdown-item" href="/editarUsuario/">Editar</a></li>
+                                                    <li><a class="dropdown-item" onclick="location.href='/gestionarUsuarios/'">Eliminar</a></li>
                                                 {% endif %} 
                                             </ul>
                                         </li>
@@ -195,10 +195,10 @@
                                         <li class="nav-item dropdown">
                                             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                                <li><a class="dropdown-item" href="/visualizarProveedor/">Ver</a></li>
+                                                <li><a class="dropdown-item" href="/visualizarUsuario/">Ver</a></li>
                                                 {% if 'usr_id' in session %}
-                                                    <li><a class="dropdown-item" href="/editarProveedor/">Editar</a></li>
-                                                    <li><a class="dropdown-item" onclick="location.href='/gestionarProveedores/'">Eliminar</a></li>
+                                                    <li><a class="dropdown-item" href="/editarUsuario/">Editar</a></li>
+                                                    <li><a class="dropdown-item" onclick="location.href='/gestionarUsuarios/'">Eliminar</a></li>
                                                 {% endif %} 
                                             </ul>
                                         </li>
@@ -214,10 +214,10 @@
                                         <li class="nav-item dropdown">
                                             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                                <li><a class="dropdown-item" href="/visualizarProveedor/">Ver</a></li>
+                                                <li><a class="dropdown-item" href="/visualizarUsuario/">Ver</a></li>
                                                 {% if 'usr_id' in session %}
-                                                    <li><a class="dropdown-item" href="/editarProveedor/">Editar</a></li>
-                                                    <li><a class="dropdown-item" onclick="location.href='/gestionarProveedores/'">Eliminar</a></li>
+                                                    <li><a class="dropdown-item" href="/editarUsuario/">Editar</a></li>
+                                                    <li><a class="dropdown-item" onclick="location.href='/gestionarUsuarios/'">Eliminar</a></li>
                                                 {% endif %} 
                                             </ul>
                                         </li>
