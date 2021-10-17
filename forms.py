@@ -49,7 +49,7 @@ class FProducto(FlaskForm):
     nombreTxt = TextField('Nombre',validators=[InputRequired(message='Se requiere el Nombre')])
     marcaTxt = TextField('Marca',validators=[InputRequired(message='Se requiere la Marca')])
     modeloTxt = TextField('Marca',validators=[InputRequired(message='Se requiere el Modelo')])
-    anoTxt = TextField('Año',validators=[InputRequired(message='Se requiere el año')])
+    anoTxt = DateField('Año',validators=[InputRequired(message='Se requiere el año')], format='%Y')
     asientosTxt = TextField('Asientos',validators=[InputRequired(message='Se requiere asientos')])
     pesoTxt = TextField('Peso',validators=[InputRequired(message='Se requiere el peso')])
     vmTxt = TextField('Velocidad Máxima',validators=[InputRequired(message='Se requiere la velocidad máxima')])
