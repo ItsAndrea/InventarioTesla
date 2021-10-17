@@ -17,8 +17,9 @@ def seleccionar(query) -> list:
     """ Ejecuta una consulta de seleccion y retorna los registros seleccionados """
     try:
         with sqlite3.connect('static\db\Tesla.db') as conn:
-            warea = conn.cursor()                       # Área intermedia para trabajo con la BD
-            rst = warea.execute(query).fetchall()    # Se ejecuta el comando y recupera la cantidad de filas (registros) afectados
+            warea = conn.cursor()
+            rst = warea.execute(query).fetchall()
+            conn.close()
     except Exception as ex:
         rst = None
     return rst
