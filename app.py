@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from flask import Flask, render_template, session, request
+from flask import Flask, render_template, redirect, session, request
 from flask.sessions import NullSession
 from markupsafe import escape
 from werkzeug.datastructures import TypeConversionDict
@@ -17,7 +17,7 @@ def home():
     if 'logged' in session:
         return render_template("home.html")
     else:
-        return render_template('flogin.html')
+        return redirect('/login/')
 
 
 @app.route('/logout/')
@@ -52,9 +52,8 @@ def login():
             session['logged']='T'
             session['usr_id'] = mail
             session['pwd_id'] = pwd
-            session['admin_id']='T'
-            admin_id='Administrador'
-            return render_template('home.html',admin_id=admin_id)
+            session['admin_id']='Administrador'
+            return render_template('home.html',admin_id=session['admin_id'])
         elif swvalido:
             session.clear()
             session['logged']='T'
@@ -64,6 +63,7 @@ def login():
             return render_template('home.html',admin_id=admin_id)
         else:
             return render_template('flogin.html',titulo='Control de acceso', form=frm)
+
 
 @app.route("/recuperarContrasena/", methods=['GET','POST'])
 def recuperarContraseña():
@@ -102,10 +102,13 @@ def cambiarContraseña():
 @app.route("/crearProveedor/",methods=["GET","POST"])
 def crearProveedor():
     frm = FProveedor()
-    if request.method=='GET':
-        return render_template("crearProveedor.html",form=frm)
+    if 'logged' in session:
+        if request.method=='GET':
+            return render_template("crearProveedor.html",titulo='Proveedor | Crear', form=frm, admin_id=session['admin_id'])
+        else:
+            return render_template("crearProveedor.html",form=frm)
     else:
-         return render_template("crearProveedor.html",form=frm)
+        return redirect('/login/')
 
 @app.route("/gestionarProveedores/",methods=["GET"])
 def visualizarProveedores():
