@@ -6,7 +6,9 @@ from werkzeug.datastructures import TypeConversionDict
 from forms import FAsociar, FcalificarProducto, FUsuario, Login, FProducto, FProveedor 
 import os
 
-
+"""
+test
+"""
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
 
