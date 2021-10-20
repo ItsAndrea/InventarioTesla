@@ -1,0 +1,130 @@
+{% extends 'base.html' %}
+{% block cuerpo %}
+        <form action='/asociarProductos/' method='POST' name='asociarProductos' id='asociarProductos'>  
+            <div class="card shadow-lg border-0 rounded-lg mt-5">
+                <!--Header-->
+                <div class="card-header">
+                    <h3 class="text-center font-weight-light my-4">Asociar Productos</h3>
+                </div>
+                <!-- Body -->
+                <div class="card-body">
+                    <!--inputs (textfiels, checkboxs, etc)-->
+                    <div class="form-floating mb-3">
+                        {{form.nitSxt(class="form-control", placeholder="Consultar Nit")}}
+                        {{form.nitSxt.label}}
+                    </div>
+                    <div class="form-floating mb-3">
+                        {{form.rSocialTxt(class="form-control", placeholder="Razón Social")}}
+                        {{form.rSocialTxt.label}}
+                    </div>
+                    <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
+                        <!--este <a> es relleno-->
+                        <a class="small" href="#"></a>
+                            {{form.consultarBtn(class="btn btn-primary", type="button", onclick="location.href='#'")}}
+                    </div>
+                    <div style="height: 40px;"></div>
+                    <table id="datatablesSimple">
+                        <thead>
+                            <tr>
+                                <th>Seleccionar</th>
+                                <th>Nit</th>
+                                <th>Razón Social</th>
+                                <th>Dirección</th>
+                                <th>Teléfono</th>
+                                <th>E-mail</th>                                
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>Seleccionar</th>
+                                <th>Nit</th>
+                                <th>Razón Social</th>
+                                <th>Dirección</th>
+                                <th>Teléfono</th>
+                                <th>E-mail</th> 
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                            <tr>
+                                <td>{{form.opcionChk(placeholder="Seleccionar")}}</td>
+                                <td>Tiger Nixon</td>
+                                <td>System Architect</td>
+                                <td>Edinburgh</td>
+                                <td>61</td>
+                                <td>2011/04/25</td>
+                            </tr>
+                            <tr>
+                                <td>{{form.opcionChk(placeholder="Seleccionar")}}</td>
+                                <td>Tiger Nixon</td>
+                                <td>System Architect</td>
+                                <td>Edinburgh</td>
+                                <td>61</td>
+                                <td>2011/04/25</td>
+                            </tr>
+                            <tr>
+                                <td>{{form.opcionChk(placeholder="Seleccionar")}}</td>
+                                <td>Tiger Nixon</td>
+                                <td>System Architect</td>
+                                <td>Edinburgh</td>
+                                <td>61</td>
+                                <td>2011/04/25</td>
+                            </tr>
+                            <tr>
+                                <td>{{form.opcionChk(placeholder="Seleccionar")}}</td>
+                                <td>Tiger Nixon</td>
+                                <td>System Architect</td>
+                                <td>Edinburgh</td>
+                                <td>61</td>
+                                <td>2011/04/25</td>
+                            </tr>
+                            <tr>
+                                <td>{{form.opcionChk(placeholder="Seleccionar")}}</td>
+                                <td>Tiger Nixon</td>
+                                <td>System Architect</td>
+                                <td>Edinburgh</td>
+                                <td>61</td>
+                                <td>2011/04/25</td>
+                            </tr>
+                            <tr>
+                                <td>{{form.opcionChk(placeholder="Seleccionar")}}</td>
+                                <td>Tiger Nixon</td>
+                                <td>System Architect</td>
+                                <td>Edinburgh</td>
+                                <td>61</td>
+                                <td>2011/04/25</td>
+                            </tr>
+                            <tr>
+                                <td>{{form.opcionChk(placeholder="Seleccionar")}}</td>
+                                <td>Tiger Nixon</td>
+                                <td>System Architect</td>
+                                <td>Edinburgh</td>
+                                <td>61</td>
+                                <td>2011/04/25</td>
+                            </tr>
+                            <tr>
+                                <td>{{form.opcionChk(placeholder="Seleccionar")}}</td>
+                                <td>Tiger Nixon</td>
+                                <td>System Architect</td>
+                                <td>Edinburgh</td>
+                                <td>61</td>
+                                <td>2011/04/25</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
+                        <!--este <a> es relleno-->
+                        <a class="small" href="#"></a>
+                        <!--boton de envio-->
+                        <div>
+                            {{form.agregarBtn(class="btn btn-primary")}}
+                            {{form.cancelarBtn(class="btn btn-primary", type="button", onclick="location.href='/home/'")}}
+                        </div>
+                    </div>
+                </div>
+                <!--Footer-->
+                <div class="card-footer text-center py-3">
+                    <div class="small"><a href="#"> </a></div>
+                </div>
+            </div>  
+        </form>
+{% endblock %}
