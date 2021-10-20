@@ -17,12 +17,12 @@ def ejecutar(query,params) -> int:
             conn.close()
     return rst
 
-def seleccionar(query) -> list:
+def seleccionar(query,params) -> list:
     """ Ejecuta una consulta de seleccion y retorna los registros seleccionados """
     try:
         with sqlite3.connect(URL) as conn:
             warea = conn.cursor()
-            rst = warea.execute(query).fetchall()
+            rst = warea.execute(query,params).fetchall()
             conn.close()
     except Exception as ex:
         rst = None
