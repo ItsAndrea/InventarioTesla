@@ -35,13 +35,13 @@ def login():
         return render_template('flogin.html',titulo='Control de acceso', form=frm)
     else:
         # Recuperar los datos
-        mail = escape(request.form['mail'].strip())
-        pwd = escape(request.form['psw'].strip())
+        mail = escape(request.form['mail'].strip()).upper
+        pwd = escape(request.form['psw'].strip()).upper
         # validar los datos
         admin= True
         swvalido = True
-        query1="SELECT * FROM usuarios WHERE email= "+mail+" clave= "+pwd
-        query2="SELECT rol FROM usuarios WHERE email= "+mail+" clave= "+pwd
+        query1=f"SELECT * FROM usuarios WHERE email= {mail} clave= {pwd}"
+        query2=f"SELECT rol FROM usuarios WHERE email= {mail} clave= {pwd}"
         usr=gestorDB.seleccionar(query1)
         rol=gestorDB.seleccionar(query2)
         if len(usr)>0:
