@@ -40,8 +40,17 @@ def login():
         # validar los datos
         admin= True
         swvalido = True
-        query="SELECT * FROM usuarios WHERE email= "+mail+" clave= "+pwd
-        usr=gestorDB.seleccionar(query)
+        query1="SELECT * FROM usuarios WHERE email= "+mail+" clave= "+pwd
+        query2="SELECT rol FROM usuarios WHERE email= "+mail+" clave= "+pwd
+        usr=gestorDB.seleccionar(query1)
+        rol=gestorDB.seleccionar(query2)
+        if len(usr)>0:
+            session.clear()
+            session['logged']='T'
+            session['usr_id'] = mail
+            session['pwd_id'] = pwd
+            admin_id=rol
+            return render_template('home.html',admin_id=admin_id)
         
         """
         if len(mail)<6 or len(mail)>40:
