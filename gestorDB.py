@@ -2,12 +2,12 @@ import sqlite3
 
 URL ='static\db\Tesla.db'
 
-def ejecutar(query,params) -> int:
+def ejecutar(query) -> int:
     """ Ejecuta una consulta de acción y retorna el número de registros afectadas """
     try:
         with sqlite3.connect(URL) as conn:
             warea = conn.cursor()
-            rst = warea.execute(query,params).rowcount
+            rst = warea.execute(query).rowcount
             if rst!=0:
                 conn.commit()
     except Exception as e:

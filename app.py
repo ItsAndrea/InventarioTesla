@@ -1,14 +1,15 @@
 # -*- coding: utf-8 -*-
 from flask import Flask, render_template, redirect, session, request
 from flask.sessions import NullSession
+from flask_wtf import form
 from markupsafe import escape
 from werkzeug.datastructures import TypeConversionDict
 from forms import FAsociar, FcalificarProducto, FUsuario, Login, FProducto, FProveedor 
+import gestorDB
 import os
 
-"""
-test
-"""
+
+
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
 
@@ -34,11 +35,15 @@ def login():
         return render_template('flogin.html',titulo='Control de acceso', form=frm)
     else:
         # Recuperar los datos
-        mail = request.form['mail']
-        pwd = request.form['psw']
-        admin= True
+        mail = escape(request.form['mail'].strip())
+        pwd = escape(request.form['psw'].strip())
         # validar los datos
+        admin= True
         swvalido = True
+        query="SELECT * FROM usuarios WHERE email= "+mail+" clave= "+pwd
+        usr=gestorDB.seleccionar(query)
+        
+        """
         if len(mail)<6 or len(mail)>40:
             swvalido = False
         if len(pwd)<6 or len(pwd)>40:
@@ -65,6 +70,7 @@ def login():
             return render_template('home.html',admin_id=admin_id)
         else:
             return render_template('flogin.html',titulo='Control de acceso', form=frm)
+        """
 
 
 @app.route("/recuperarContrasena/", methods=['GET','POST'])
