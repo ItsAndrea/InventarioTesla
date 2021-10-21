@@ -44,12 +44,19 @@ def login():
         mail = escape(request.form['mail'].strip())
         pwd = escape(request.form['psw'].strip())
         admin= False
+        q=f"SELECT clave FROM usuarios WHERE email= '{mail}' "
+        a=gestorDB.seleccionar(q,"")
+        a= trash(a).strip()
         if check_password_hash(a,pwd):
-            print("funciona")
-        query1=f"SELECT * FROM usuarios WHERE (email= '{mail}')"
-        query2=f"SELECT * FROM usuarios WHERE (email= '{mail}') and (clave)='{pwd}') and (rol='ADMIN') or (rol='SUPERADMIN'))"
+            print("Acceso concedido")
+        else:
+            print("Acceso denegado")
+
+        query1=f"SELECT * FROM usuarios WHERE (email= '{mail}') "
+        query2=f"SELECT * FROM usuarios WHERE (email= '{mail}') and (rol='Admin') or (rol='Super')"
         usr=gestorDB.seleccionar(query1,"")
-        if len(query2)>0:
+        rol=gestorDB.seleccionar(query2,"")
+        if len(rol)>0 and a:
             admin=True
         if len(usr)>0 and a:
             session.clear()
