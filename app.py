@@ -47,8 +47,9 @@ def login():
         q=f"SELECT clave FROM usuarios WHERE (email= '{mail}')"
         psw=gestorDB.seleccionar(q,"")
         a=trash(q)
-        check_password_hash(a,pwd)
         print(a)
+        if check_password_hash(a,pwd):
+            print("funciona")
         query1=f"SELECT * FROM usuarios WHERE (email= '{mail}')"
         query2=f"SELECT * FROM usuarios WHERE (email= '{mail}') and (rol='ADMIN') or (rol='SUPERADMIN'))"
         usr=gestorDB.seleccionar(query1,"")
@@ -67,36 +68,6 @@ def login():
         else:
             return render_template('flogin.html')
         
-        """
-        if len(mail)<6 or len(mail)>40:
-            swvalido = False
-        if len(pwd)<6 or len(pwd)>40:
-            swvalido = False
-        #validar rol
-        if swvalido and mail!="aaroncabrales@gmail.com" and pwd!="1234567":
-            admin=False
-        if mail!="aaroncabrales@gmail.com" and pwd!="1234567":
-            admin=False
-        # Realizar el login simulado
-        if  admin:
-            session.clear()
-            session['logged']='T'
-            session['usr_id'] = mail
-            session['pwd_id'] = pwd
-            session['admin_id']='Administrador'
-            return render_template('home.html',admin_id=session['admin_id'])
-        elif swvalido:
-            session.clear()
-            session['logged']='T'
-            session['usr_id'] = mail
-            session['pwd_id'] = pwd
-            admin_id='Usuario final'
-            return render_template('home.html',admin_id=admin_id)
-        else:
-            return render_template('flogin.html',titulo='Control de acceso', form=frm)
-        """
-
-
 @app.route("/recuperarContrasena/", methods=['GET','POST'])
 def recuperarContraseña():
     if request.method=='GET':
