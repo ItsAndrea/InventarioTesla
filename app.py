@@ -44,14 +44,10 @@ def login():
         mail = escape(request.form['mail'].strip())
         pwd = escape(request.form['psw'].strip())
         admin= False
-        q=f"SELECT clave FROM usuarios WHERE (email= '{mail}')"
-        psw=gestorDB.seleccionar(q,"")
-        a=trash(q)
-        print(a)
         if check_password_hash(a,pwd):
             print("funciona")
         query1=f"SELECT * FROM usuarios WHERE (email= '{mail}')"
-        query2=f"SELECT * FROM usuarios WHERE (email= '{mail}') and (rol='ADMIN') or (rol='SUPERADMIN'))"
+        query2=f"SELECT * FROM usuarios WHERE (email= '{mail}') and (clave)='{pwd}') and (rol='ADMIN') or (rol='SUPERADMIN'))"
         usr=gestorDB.seleccionar(query1,"")
         if len(query2)>0:
             admin=True
