@@ -1,13 +1,22 @@
 # -*- coding: utf-8 -*-
-from flask import Flask, render_template, redirect, session, request
+import os
+
+from flask import Flask, redirect, render_template, request, session
 from flask.sessions import NullSession
 from flask_wtf import form
 from markupsafe import escape
 from werkzeug.datastructures import TypeConversionDict
-from forms import FAsociar, FcalificarProducto, FUsuario, Login, FProducto, FProveedor 
-import gestorDB
-import os
+from forms import FAsociar,FcalificarProducto,FProducto,FProveedor,FUsuario,Login
+from hashlib import sha512, md5
+from werkzeug.security import check_password_hash, generate_password_hash
 
+
+import gestorDB
+
+def trash(q):
+    a=str(q[0]).replace("('"," ")
+    a=a.replace("',)","")
+    return a
 
 
 app = Flask(__name__)
@@ -23,29 +32,40 @@ def home():
         return redirect('/login/')
 
 
-@app.route('/logout/')
-def logout():
-    session.clear()
-    return render_template('flogin.html')
-
+@app.route('/logout/',methods=["GET","POST"])
 @app.route("/login/", methods=["GET","POST"])
 def login():
     frm = Login()
+    session.clear()
     if request.method=='GET':
         return render_template('flogin.html',titulo='Control de acceso', form=frm)
     else:
         # Recuperar los datos
         mail = escape(request.form['mail'].strip())
         pwd = escape(request.form['psw'].strip())
-        # validar los datos
-        admin= True
-        swvalido = True
-        query1=f"SELECT * FROM usuarios WHERE email= '{mail}' clave= '{pwd}'"
-        query2=f"SELECT rol FROM usuarios WHERE email= '{mail}' clave= '{pwd}'"
-        usr=gestorDB.seleccionar(query1)
-        print(usr)
-        rol=gestorDB.seleccionar(query2)
-        return render_template('home.html')
+        admin= False
+        q=f"SELECT clave FROM usuarios WHERE (email= '{mail}')"
+        psw=gestorDB.seleccionar(q,"")
+        a=trash(q)
+        check_password_hash(a,pwd)
+        print(a)
+        query1=f"SELECT * FROM usuarios WHERE (email= '{mail}')"
+        query2=f"SELECT * FROM usuarios WHERE (email= '{mail}') and (rol='ADMIN') or (rol='SUPERADMIN'))"
+        usr=gestorDB.seleccionar(query1,"")
+        if len(query2)>0:
+            admin=True
+        if len(usr)>0 and a:
+            session.clear()
+            session['logged']='T'
+            session['usr_id'] = mail
+            session['pwd_id'] = pwd
+            if admin:
+                session['admin_id']='T'
+                return render_template('home.html',admin_id="admin")
+            else:
+                return render_template('home.html',admin_id="usuario")
+        else:
+            return render_template('flogin.html')
         
         """
         if len(mail)<6 or len(mail)>40:

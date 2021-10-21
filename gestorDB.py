@@ -23,7 +23,6 @@ def seleccionar(query,params) -> list:
         with sqlite3.connect(URL) as conn:
             warea = conn.cursor()
             rst = warea.execute(query,params).fetchall()
-            conn.close()
     except Exception as ex:
         rst = None
     finally:
