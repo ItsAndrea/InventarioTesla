@@ -98,3 +98,5 @@ class FUsuario(FlaskForm):
     borrarBtn = SubmitField('Borrar')
     editarBtn = SubmitField('Editar')
     cancelarBtn = SubmitField('Cancelar')
+    pswtxt= PasswordField('Contraseña',validators=[InputRequired(message='Se requiere una contraseña valida'), Length(min=6, message='Longitud debe ser mayor a 6 caracteres')])
+
