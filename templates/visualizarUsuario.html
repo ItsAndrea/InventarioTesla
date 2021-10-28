@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% block cuerpo %}
+        {% if 'admin_id' in session%}
         <form action='/visualizarUsuario/' method='POST' name='visualizarUsuario' id='visualizarUsuario'>  
             <div class="card shadow-lg border-0 rounded-lg mt-5">
                 <!--Header-->
@@ -62,4 +63,5 @@
                 </div>
             </div>  
         </form>
+        {% endif %}
 {% endblock %}
