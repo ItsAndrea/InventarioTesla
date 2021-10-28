@@ -217,7 +217,7 @@ def crearUsuario():
         tel= escape(frm.telefonoTxt.data)
         email= escape(frm.emailTxt.data)
         rol= escape(frm.rolCmb.data)
-        psw= generate_password_hash('1234567')
+        psw= generate_password_hash(escape(frm.pswtxt.data))
         q=f"INSERT INTO usuarios (tipodoc, numdoc, nombres,apellidos,fnacimiento,direccion,telefono,email,clave,rol) VALUES ('{td}', '{ni}', '{name}', '{lastname}','{fn}','{dirc}','{tel}','{email}','{psw}','{rol}');"
         a=gestorDB.ejecutar(q,"")
         if a>0:
