@@ -36,10 +36,11 @@ def login():
     if request.method=='GET':
         return render_template('flogin.html',titulo='Control de acceso', form=frm)
     else:
-         # Recuperar los datos
+        # Recuperar los datos
         mail = escape(request.form['mail'].strip())
         pwd = escape(request.form['psw'].strip())
         admin= False
+        superadmin=False
         p=False
         q=f"SELECT clave FROM usuarios WHERE email= '{mail}' "
         a=gestorDB.seleccionar(q,"")
@@ -48,54 +49,63 @@ def login():
             p=True
         else:
             p=False
-        query1=f"SELECT * FROM usuarios WHERE (email= '{mail}') and (estado='A') "
-        query2=f"SELECT * FROM usuarios WHERE (email= '{mail}') and (rol='Admin') or (rol='Super')"
+            
+        query1=f"SELECT * FROM usuarios WHERE (email= '{mail}') and (estado='P') "
+        query2=f"SELECT * FROM usuarios WHERE (email= '{mail}') and (rol='Admin')"
+        query3=f"SELECT * FROM usuarios WHERE (email= '{mail}') and (rol='Super')"
         usr=gestorDB.seleccionar(query1,"")
-        rol=gestorDB.seleccionar(query2,"")
-        if len(rol)>0 and p:
+        ad=gestorDB.seleccionar(query2,"")
+        superad= gestorDB.seleccionar(query3,"")
+        if len(ad)>0 and p:
             admin=True
+        if len(superad)>0 and p:
+            superadmin= True
         if len(usr)>0 and p:
             session.clear()
             session['logged']='T'
             session['usr_id'] = mail
             session['pwd_id'] = pwd
+            if superadmin:
+                session['admin_id']='T'
+                session['superadmin_id']='T'
+                return render_template('home.html',admin_id="Super Admin")
             if admin:
                 session['admin_id']='T'
                 return render_template('home.html',admin_id="admin")
             else:
                 return render_template('home.html',admin_id="usuario")
         else:
-            return render_template('flogin.html')
-
-
-@app.route("/recuperarContrasena/", methods=['GET','POST'])
-def recuperarContraseña():
-    if request.method=='GET':
-        return render_template("recuperarContrasena.html")
-    else:
-        mail= request.form['mailTxt']
-        name= request.form['nameTxt']
-        if len(mail)<6:
-            error='El email ingresado es invalido o no fue encontrado'
-            return render_template("recuperarContraseña.html",error=error)
-        if len(mail)>6 and len(name)>6:
-            error='El email fue encontrado y se envio tu contraseña'
-            return render_template("recuperarContrasena.html",error=error)
-
+            error="Credenciales invalidas"
+            return render_template('flogin.html', error=error)
 
 @app.route("/cambiarContrasena/", methods=['GET','POST'])
 def cambiarContraseña():
     if request.method=='GET':
         return render_template("cambiarContrasena.html")
     else:
-        name=request.form['nameTxt']
-        mail=request.form['mailTxt']
-        psw=request.form['newpasswordTxt']
-        psw2=request.form['newpasswordTxt2']
-        if psw==psw2:
-            return render_template("cambiarContrasena.html",error="Contraseña cambiada")
+        name=escape(request.form['nameTxt']).strip()
+        mail=escape(request.form['mailTxt']).strip()
+        psw=escape(request.form['passwordTxt']).strip()
+        newpsw=escape(request.form['newpasswordTxt']).strip()
+        newpsw2=escape(request.form['newpasswordTxt2']).strip()
+        q=f"Select clave from usuarios where email='{mail}'"
+        pwd= gestorDB.seleccionar(q,"")
+        q=trash(pwd).strip()
+        error=""
+        if check_password_hash(q,psw):
+            if newpsw==newpsw2:
+                p=generate_password_hash(newpsw)
+                q=f"update usuarios SET clave='{p}' WHERE email='{mail}'"
+                a=gestorDB.ejecutar(q,"")
+                if a>0:
+                    error="Cambiada con exito"
+                else:
+                    error="no se k pdo"
+            else:
+                error="Asegurese de que la nueva contraseña esta igual en ambos campos"
         else:
-            return render_template("cambiarContrasena.html",error="Confirme que las nuevas contraseñas sean iguales",name=name,mail=mail)
+            error="La contraseña actual es incorrecta"
+        return render_template("cambiarContrasena.html",error=error)
 
 
 #
@@ -198,7 +208,23 @@ def crearUsuario():
     if request.method=='GET':
         return render_template("crearUsuario.html",form=frm)
     else:
-         return render_template("crearUsuario.html",form=frm)
+        td= escape(frm.tdocumentoCmb.data)
+        ni= escape(frm.numerodocTxt.data)
+        name=escape(frm.nombresTxt.data)
+        lastname=escape(frm.apellidosTxt.data)
+        fn=escape(frm.fechaNacCmb.data)
+        dirc=escape(frm.direccionTxt.data)
+        tel= escape(frm.telefonoTxt.data)
+        email= escape(frm.emailTxt.data)
+        rol= escape(frm.rolCmb.data)
+        psw= generate_password_hash('1234567')
+        q=f"INSERT INTO usuarios (tipodoc, numdoc, nombres,apellidos,fnacimiento,direccion,telefono,email,clave,rol) VALUES ('{td}', '{ni}', '{name}', '{lastname}','{fn}','{dirc}','{tel}','{email}','{psw}','{rol}');"
+        a=gestorDB.ejecutar(q,"")
+        if a>0:
+            error="Operacion exitosa"
+        else:
+            error= "Error en la operacion"
+        return render_template("crearUsuario.html",form=frm,error=error)
 
 @app.route("/gestionarUsuarios/",methods=["GET"])
 def gestionarUsuarios():
