@@ -92,7 +92,7 @@ def cambiarContraseña():
         pwd= gestorDB.seleccionar(q,"")
         q=trash(pwd).strip()
         error=""
-        if check_password_hash(q,psw):
+        if 'admin_id' in session:
             if newpsw==newpsw2:
                 p=generate_password_hash(newpsw)
                 q=f"update usuarios SET clave='{p}' WHERE email='{mail}'"
@@ -100,12 +100,25 @@ def cambiarContraseña():
                 if a>0:
                     error="Cambiada con exito"
                 else:
-                    error="no se k pdo"
+                    error="No se pudo cambiar la contraseña"
             else:
                 error="Asegurese de que la nueva contraseña esta igual en ambos campos"
         else:
-            error="La contraseña actual es incorrecta"
+            if check_password_hash(q,psw):
+                if newpsw==newpsw2:
+                    p=generate_password_hash(newpsw)
+                    q=f"update usuarios SET clave='{p}' WHERE email='{mail}'"
+                    a=gestorDB.ejecutar(q,"")
+                    if a>0:
+                        error="Cambiada con exito"
+                    else:
+                        error="No se pudo cambiar la contraseña"
+                else:
+                    error="Asegurese de que la nueva contraseña esta igual en ambos campos"
+            else:
+                error="La contraseña actual es incorrecta"
         return render_template("cambiarContrasena.html",error=error)
+
 
 
 #
