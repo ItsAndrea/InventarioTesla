@@ -47,7 +47,11 @@
                     </div>
                     <div class="form-floating mb-3">
                         <a class="small" href="#"></a>
+                        {% if 'superadmin_id' in session %}
+                        {{form.rolCmbSuper(class="form-control", placeholder="Rol")}}
+                        {% else %}
                         {{form.rolCmb(class="form-control", placeholder="Rol")}}
+                        {% endif %}
                         {{form.rolCmb.label}}
                     </div>
                     <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
