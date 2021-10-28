@@ -94,6 +94,7 @@ class FUsuario(FlaskForm):
     telefonoTxt = TelField('Teléfono',validators=[InputRequired(message='Se requiere el Teléfono')])
     emailTxt = EmailField('E-mail',validators=[InputRequired(message='Se requiere el E-mail')])
     rolCmb = SelectField(u'Rol', choices=[('Admin', 'Administrador'), ('Super', 'Super-Administrador'), ('UserF', 'Usuario Final')], default="UserF")
+    rolCmbSuper = SelectField(u'Rol', choices=[('Admin', 'Administrador'), ('Super', 'Super-Administrador'), ('UserF', 'Usuario Final')], default="UserF")
     agregarBtn = SubmitField('Agregar')
     borrarBtn = SubmitField('Borrar')
     editarBtn = SubmitField('Editar')
