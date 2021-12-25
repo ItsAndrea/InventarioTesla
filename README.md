@@ -1,4 +1,4 @@
 # InventarioTesla
-Tesla requiere un sistema de inventario para su linea de automoviles, en el cual los empleados puedan ver los productos que ofrece la empresa y conocer la cantidad en existencia.<br>
-Usuario: jpadilla@tesla.com <br>
-Clave: Jpadilla20
+Tesla requires an inventory system for its automotive line, in which employees can see the products offered by the company and know the quantity in stock.<br>
+User: jpadilla@tesla.com <br>
+Password: Jpadilla20
